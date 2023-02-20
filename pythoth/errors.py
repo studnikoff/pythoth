@@ -19,3 +19,9 @@ class SignatureColumnsError(Exception):
     """Raises when format_type columns is absent
     """
     pass
+
+
+class NotFoundStrategy(Exception):
+    """Raises when format_type columns is absent
+    """
+    pass

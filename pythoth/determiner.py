@@ -1,11 +1,14 @@
 """Format determinition
 """
+import inspect
 import os
+import sys
 from typing import Any, Optional
-import inspect, sys
+
 import pandas as pd
 
-from .errors import NoSignatureFileError, SignatureColumnsError
+from .errors import (NoSignatureFileError, NotFoundStrategy,
+                     SignatureColumnsError)
 from .strategy import Strategy
 
 
@@ -49,6 +52,7 @@ class FormatDeterminer:
                     else:
                         continue
                 raise NotImplementedError(f"Strategy {strategy} is not implemented")
+        raise NotFoundStrategy("None of strategies implements to input text")
 
     def _row_strategy(self, text: str, 
                       row: tuple[int, pd.Series]) -> Optional[str]:
